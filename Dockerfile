@@ -9,11 +9,11 @@ FROM chef AS builder
 COPY --from=planner /app/recipe.json recipe.json
 RUN cargo chef cook --release --recipe-path recipe.json
 COPY . .
-RUN cargo build --release --bin MILFPics
+RUN cargo build --release --bin ArtiPics
 
 FROM gcr.io/distroless/cc-debian13 AS runtime
 WORKDIR /app
-COPY --from=builder /app/target/release/MILFPics /usr/local/bin/MILFPics
+COPY --from=builder /app/target/release/ArtiPics /usr/local/bin/ArtiPics
 
-ENTRYPOINT ["/usr/local/bin/MILFPics"]
+ENTRYPOINT ["/usr/local/bin/ArtiPics"]
 EXPOSE 3000

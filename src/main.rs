@@ -49,9 +49,9 @@ async fn main() {
 }
 
 async fn pics_route(headers: HeaderMap, State(state): State<AppState>) -> impl IntoResponse {
-    // tokio::spawn(async move {
-    //     let _ = analytics::yell("/pics", headers).await;
-    // });
+    tokio::spawn(async move {
+        let _ = analytics::yell("/pics", headers).await;
+    });
 
     match state.cache.get("pics").await {
         Some(s) => {
