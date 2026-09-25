@@ -75,7 +75,7 @@ async fn pics_route(headers: HeaderMap, State(state): State<AppState>) -> impl I
     let base64string = pics
         .par_iter()
         .map( |image_url| {
-            return helpers::download_image_to_rgb_b64(image_url, 128, 256).unwrap();
+            return helpers::download_image_to_rgb_b64(image_url, 171, 256).unwrap();
         })
         .collect::<Vec<_>>()
         .join(",");
